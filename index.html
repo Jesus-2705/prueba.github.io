@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Espermatogénesis</title>
+    <style>
+        .titulo-con-imagenes {
+            display: flex;           
+            align-items: center;     
+            justify-content: center; 
+            gap: 250px;              
+        }
+        .titulo-con-imagenes img {
+            width: 200px;            
+            height: 200px;
+        }
+        body {
+            margin: 100px; 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+        }
+    </style>
+    <!-- A-Frame -->
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <!-- AR.js -->
+    <script src="https://rawcdn.githack.com/AR-js-org/AR.js/3.3.2/aframe/build/aframe-ar.js"></script>
+</head>
+<body>
+    <!-- Texto de presentación -->
+    <div id="info">
+        <div class="titulo-con-imagenes">
+            <img src="imagenes/medicina logo.png" alt="imagen izquierda">
+            <h1>Espermatogénesis</h1>
+            <img src="imagenes/univesidad logo.png" alt="Imagen derecha">
+        </div>
+        <h2>Museo de embriología</h2>
+        <h3>Universidad Autónoma de Chihuahua</h3>
+        <p>La embriología es el estudio del desarrollo de un embrión desde la fecundación del óvulo hasta la octava semana de gestación...</p>
+        <p>Con esta aplicación usted podrá obtener una experiencia de realidad virtual donde podrá ver modelos 3D de la espermatogénesis</p>
+    </div>
+
+    <!-- Botón para iniciar AR -->
+    <button id="start-ar">Iniciar Realidad Aumentada</button>
+    <div id="ar-container" style="width: 100%; height: 500px;"></div>
+
+    <script>
+    document.getElementById('start-ar').addEventListener('click', () => {
+      // Ocultar la info al entrar a AR
+      document.getElementById('info').style.display = 'none';
+      document.getElementById('start-ar').style.display = 'none';
+
+      // Crear la escena AR
+      const scene = document.createElement('a-scene');
+      scene.setAttribute('embedded', '');
+      scene.setAttribute('arjs', 'sourceType: webcam;');
+
+      // Marcador AR
+      const marker = document.createElement('a-marker');
+      marker.setAttribute('preset', 'hiro');
+
+      // Modelo 3D
+      const model = document.createElement('a-entity');
+      model.setAttribute('gltf-model', 'url(modeloprueba.glb)');
+      model.setAttribute('scale', '0.5 0.5 0.5');
+
+      marker.appendChild(model);
+      scene.appendChild(marker);
+
+      // Cámara
+      const camera = document.createElement('a-entity');
+      camera.setAttribute('camera', '');
+      scene.appendChild(camera);
+
+      // Agregar la escena al contenedor
+      document.getElementById('ar-container').appendChild(scene);
+    });
+    </script>
+</body>
+</html>
