@@ -4,76 +4,78 @@
     <meta charset="UTF-8">
     <title>Espermatogénesis</title>
     <style>
-        body {
-            margin: 40px; 
-            font-family: Arial, sans-serif; 
-            text-align: center;
-        }
         .titulo-con-imagenes {
             display: flex;           
             align-items: center;     
             justify-content: center; 
             gap: 250px;              
-            margin-bottom: 40px;
         }
         .titulo-con-imagenes img {
             width: 200px;            
             height: 200px;
         }
-        #ar-container {
-            width: 100%;
-            height: 500px;
-            margin-top: 20px;
+        body {
+            margin: 100px; 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
         }
     </style>
-
     <!-- A-Frame -->
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <!-- AR.js -->
     <script src="https://rawcdn.githack.com/AR-js-org/AR.js/3.3.2/aframe/build/aframe-ar.js"></script>
 </head>
 <body>
-
-    <h1>Espermatogénesis</h1>
-
-    <div class="titulo-con-imagenes">
-        <img src="izquierda.jpg" alt="Imagen Izquierda">
-        <h2>Proceso de Espermatogénesis</h2>
-        <img src="derecha.jpg" alt="Imagen Derecha">
+    <!-- Texto de presentación -->
+    <div id="info">
+        <div class="titulo-con-imagenes">
+            <img src="imagenes/medicina logo.png" alt="imagen izquierda">
+            <h1>Espermatogénesis</h1>
+            <img src="imagenes/univesidad logo.png" alt="Imagen derecha">
+        </div>
+        <h2>Museo de embriología</h2>
+        <h3>Universidad Autónoma de Chihuahua</h3>
+        <p>La embriología es el estudio del desarrollo de un embrión desde la fecundación del óvulo hasta la octava semana de gestación...</p>
+        <p>Con esta aplicación usted podrá obtener una experiencia de realidad virtual donde podrá ver modelos 3D de la espermatogénesis</p>
     </div>
 
-    <p>
-        La espermatogénesis es el proceso por el cual se forman los espermatozoides
-        en los testículos a partir de células germinales. Este proceso es fundamental
-        para la reproducción humana.
-    </p>
-
+    <!-- Botón para iniciar AR -->
     <button id="start-ar">Iniciar Realidad Aumentada</button>
-
-    <div id="ar-container"></div>
+    <div id="ar-container" style="width: 100%; height: 500px;"></div>
 
     <script>
     document.getElementById('start-ar').addEventListener('click', () => {
-        document.getElementById('start-ar').style.display = 'none';
+      // Ocultar la info al entrar a AR
+      document.getElementById('info').style.display = 'none';
+      document.getElementById('start-ar').style.display = 'none';
 
-        const scene = document.createElement('a-scene');
-        scene.setAttribute('embedded', '');
-        scene.setAttribute('arjs', 'sourceType: webcam;');
+      // Crear la escena AR
+      const scene = document.createElement('a-scene');
+      scene.setAttribute('embedded', '');
+      scene.setAttribute('arjs', 'sourceType: webcam;');
 
-        const marker = document.createElement('a-marker');
-        marker.setAttribute('preset', 'hiro');
+      // Marcador AR
+      const marker = document.createElement('a-marker');
+      marker.setAttribute('preset', 'hiro');
 
-        const model = document.createElement('a-entity');
-        model.setAttribute('gltf-model', 'url(modeloprueba.glb)');
-        model.setAttribute('scale', '1 1 1');
+      // Modelo 3D
+      const model = document.createElement('a-entity');
+      model.setAttribute('gltf-model', 'url(modeloprueba.glb)');
+      model.setAttribute('scale', '0.5 0.5 0.5');
 
-        marker.appendChild(model);
-        scene.appendChild(marker);
+      marker.appendChild(model);
+      scene.appendChild(marker);
 
-        document.getElementById('ar-container').appendChild(scene);
+      // Cámara
+      const camera = document.createElement('a-entity');
+      camera.setAttribute('camera', '');
+      scene.appendChild(camera);
+
+      // Agregar la escena al contenedor
+      document.getElementById('ar-container').appendChild(scene);
     });
     </script>
-
 </body>
 </html>
+
 
