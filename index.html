@@ -164,7 +164,28 @@ p {
 #ar-container {
     margin-top: 20px;
 }
+#salir {
+    background-color: #3498db; /* Color de botón llamativo */
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 50px; /* Botón con bordes muy redondeados */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 30px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
 
+#salir:hover {
+    background-color: #2980b9; /* Oscurece el color al pasar el cursor */
+    transform: scale(1.05); /* Efecto de "crecer" al pasar el cursor */
+}
+
+#salir-container {
+    margin-top: 20px;
+}
 /* Media Queries para ajustar el diseño en pantallas más pequeñas */
 @media (max-width: 768px) {
     .titulo-con-imagenes {
@@ -188,12 +209,11 @@ p {
 <body>
     <div id="info">
         </div>
-    <button id="start-ar">Iniciar Realidad Aumentada</button>
-    <div id="ar-container" style="width: 100%; height: 500px;"></div>
+    <button id="salir">Salir de realidad aumentada</button>
+    <div id="salir-container" style="width: 100%; height: 500px;"></div>
     <script>
         // Tu script JS no ha cambiado
-        document.getElementById('start-ar').addEventListener('click', () => {
-            // ...
+        document.getElementById('salir').addEventListener('click', () => {
         });
     </script>
 </body>
